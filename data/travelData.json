@@ -1,0 +1,104 @@
+{
+  "Travels": [
+    {
+      "start": "CCS",
+      "end": "AUA",
+      "cost": "40"
+    },
+    {
+      "start": "CCS",
+      "end": "CUR",
+      "cost": "35"
+    },
+    {
+      "start": "CCS",
+      "end": "BON",
+      "cost": "60"
+    },
+    {
+      "start": "AUA",
+      "end": "CUR",
+      "cost": "15"
+    },
+    {
+      "start": "AUA",
+      "end": "BON",
+      "cost": "15"
+    },
+    {
+      "start": "CUR",
+      "end": "BON",
+      "cost": "15"
+    },
+    {
+      "start": "CCS",
+      "end": "SDQ",
+      "cost": "180"
+    },
+    {
+      "start": "SDQ",
+      "end": "SXM",
+      "cost": "50"
+    },
+    {
+      "start": "SXM",
+      "end": "SBH",
+      "cost": "45"
+    },
+    {
+      "start": "CCS",
+      "end": "POS",
+      "cost": "150"
+    },
+    {
+      "start": "CCS",
+      "end": "BGI",
+      "cost": "180"
+    },
+    {
+      "start": "POS",
+      "end": "BGI",
+      "cost": "35"
+    },
+    {
+      "start": "POS",
+      "end": "SXM",
+      "cost": "90"
+    },
+    {
+      "start": "BGI",
+      "end": "SXM",
+      "cost": "70"
+    },
+    {
+      "start": "POS",
+      "end": "PTP",
+      "cost": "80"
+    },
+    {
+      "start": "POS",
+      "end": "FDF",
+      "cost": "75"
+    },
+    {
+      "start": "PTP",
+      "end": "SXM",
+      "cost": "100"
+    },
+    {
+      "start": "PTP",
+      "end": "SBH",
+      "cost": "80"
+    },
+    {
+      "start": "CUR",
+      "end": "SXM",
+      "cost": "80"
+    },
+    {
+      "start": "AUA",
+      "end": "SXM",
+      "cost": "85"
+    }
+  ]
+}

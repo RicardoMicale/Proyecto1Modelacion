@@ -1,0 +1,57 @@
+{
+  "CCS": {
+    "code": "CCS",
+    "city": "Caracas",
+    "visaRequired": false
+  },
+  "AUA": {
+    "code": "AUA",
+    "city": "Aruba",
+    "visaRequired": true
+  },
+  "BON": {
+    "code": "BON",
+    "city": "Bonaire",
+    "visaRequired": true
+  },
+  "CUR": {
+    "code": "CUR",
+    "city": "Curazao",
+    "visaRequired": true
+  },
+  "SXM": {
+    "code": "SXM",
+    "city": "San Martín",
+    "visaRequired": true
+  },
+  "SDQ": {
+    "code": "SDQ",
+    "city": "Santo Domingo",
+    "visaRequired": true
+  },
+  "SBH": {
+    "code": "SBH",
+    "city": "San Bartolomé",
+    "visaRequired": false
+  },
+  "POS": {
+    "code": "POS",
+    "city": "Puerto España",
+    "visaRequired": false
+  },
+  "BGI": {
+    "code": "BGI",
+    "city": "Barbados",
+    "visaRequired": false
+  },
+  "FDF": {
+    "code": "FDF",
+    "city": "Fort de France",
+    "visaRequired": false
+  },
+  "PTP": {
+    "code": "PTP",
+    "city": "Point a Pitre",
+    "visaRequired": false
+  }
+}
