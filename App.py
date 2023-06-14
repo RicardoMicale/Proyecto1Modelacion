@@ -5,6 +5,9 @@ from Node import Node
 from Traveler import Traveler
 from Graph import Graph
 
+#CONSTANTS
+ORIGIN = 'CCS'
+
 # LOADING DATA
 def loadAirports():
   '''
