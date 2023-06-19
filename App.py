@@ -7,6 +7,7 @@ from Graph import Graph
 
 #CONSTANTS
 ORIGIN = 'CCS'
+DESTINATION = 'SBH'
 
 # LOADING DATA
 def loadAirports():
@@ -50,14 +51,19 @@ def loadNodes(airports):
   travelData.close()
   return _travel
 
-def makeGraph(nodes, graph, airports):
+def makeGraph(nodes, graph, airports, traveler):
   '''
   Takes in a graph object and a list of nodes,
   loops through the nodes
   and creates edges on the graph instance
   '''
   for node in nodes:
-    graph.addEdge(node.start, node.end, node.cost, airports)
+    if airports[node.start].visaRequired and traveler.hasVisa:
+      graph.addEdge(node.start, node.end, node.cost, airports)
+
+    if not airports[node.start].visaRequired:
+      graph.addEdge(node.start, node.end, node.cost, airports)
+
 
 def runApp():
   '''
@@ -65,10 +71,15 @@ def runApp():
   '''
   airports = loadAirports()
   travels = loadNodes(airports)
+  origin = ORIGIN
+  destination = DESTINATION
   # Creating graph object
   graph = Graph()
-  makeGraph(travels, graph, airports)
-  graph.printData()
+  traveler = Traveler('Ricardo', 'Micale', False)
+  makeGraph(travels, graph, airports, traveler)
+  #graph.printData()
+  path = graph.traverseGraph(origin, destination)
+  # print(path)
   #for i in travels: i.printData()
 
 runApp()
