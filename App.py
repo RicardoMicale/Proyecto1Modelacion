@@ -1,8 +1,10 @@
+import networkx as nx
+import matplotlib as mpl
+import matplotlib.pyplot as plt
 import json
 # LOCAL IMPORTS
 from Airport import Airport
 from Node import Node
-from Traveler import Traveler
 from Graph import Graph
 
 #CONSTANTS
@@ -64,22 +66,37 @@ def makeGraph(nodes, graph, airports, traveler):
     if not airports[node.start].visaRequired:
       graph.addEdge(node.start, node.end, node.cost, airports)
 
+def plotGraph(graph):
+  adjacencyList = {}
 
-def runApp():
+  for key, value in graph.items():
+    adjacencyList.update({ key: { item[0]: item[1] for item in value } })
+
+  G = nx.Graph(adjacencyList)
+  nx.draw_networkx(G, with_labels=True, node_color="c", edge_color="k", font_size=8)
+
+  plt.axis("off")
+  plt.show()
+  return adjacencyList
+
+
+def runApp(traveler, origin, destination):
   '''
   Runs the app
   '''
   airports = loadAirports()
   travels = loadNodes(airports)
-  origin = ORIGIN
-  destination = DESTINATION
   # Creating graph object
   graph = Graph()
-  traveler = Traveler('Ricardo', 'Micale', False)
+  # traveler = Traveler('Ricardo', 'Micale', True)
   makeGraph(travels, graph, airports, traveler)
-  #graph.printData()
-  path = graph.traverseGraph(origin, destination)
-  # print(path)
-  #for i in travels: i.printData()
+  graph.printData()
+  path, totalCost = graph.traverseGraph(origin, destination)
+  result = (graph.getPath(destination, origin, path), totalCost)
+  for item in range(len(result[0])):
+    airport = airports[result[0][item]]
+    result[0][item] = f"{airport.code} ({airport.city})"
+  plotGraph(graph.graph)
+  # print(result)
+  return result
 
-runApp()

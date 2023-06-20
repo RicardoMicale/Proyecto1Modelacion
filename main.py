@@ -1,6 +1,6 @@
-from App import runApp
+from Interface import root
 
 def main():
-  runApp()
+  root.mainloop()
 
 main()

@@ -1,3 +1,5 @@
+import heapq as heap
+
 class Graph:
   def __init__(self):
     self.graph = dict()
@@ -18,63 +20,47 @@ class Graph:
     costMatrix = {}
     for vertex in self.graph.keys():
       costMatrix[vertex] = float("Inf") if vertex != origin else 0
-    # print(costMatrix)
+
+    queue = []
+    heap.heappush(queue, (0, origin))
 
     # visited nodes
     visitedAirports = []
-
-    # traverse list
-    toVisit = self.graph[origin]
-    # print(airports)
-    currentAirport = origin
-    totalCost = 0
+    # path taken to destination
+    path = {}
 
     if origin == destination:
       return ([origin], 0)
 
-    while currentAirport != destination:
-      visitedAirports.append(currentAirport)
-      costs = []
-      nextAirports = []
+    while queue:
+      _, node = heap.heappop(queue)
+      visitedAirports.append(node)
 
-      for node in toVisit:
-        newCost = node[1]
-        if costMatrix[node[0]] != float("Inf"):
-          oldCost = costMatrix[node[0]]
-          if newCost < oldCost:
-            costMatrix[node[0]] = newCost
+      for item in self.graph[node]:
+        airport = item[0]
+        cost = item[1]
 
-        costs.append(node[1])
-        nextAirports.append(node[0])
+        if airport in visitedAirports: continue
 
-      if destination in nextAirports:
-        visitedAirports.append(destination)
-        lastCost = costs[nextAirports.index(destination)]
-        totalCost += lastCost
-        break
+        newCost = costMatrix[node] + cost
+        if costMatrix[airport] > newCost:
+          path[airport] = node
+          costMatrix[airport] = newCost
+          heap.heappush(queue, (newCost, airport))
 
-      # gest the minimum cost on the cost array
-      minCost = min(costs)
+    return (path, costMatrix[destination])
 
-      # if the minimum cost has already been visited
-      if nextAirports[costs.index(minCost)] in visitedAirports:
-        # removes that cost from the options and looks for the next lower cost
-        costs.remove(minCost)
-        minCost = min(costs)
+  def getPath(self, destination, origin, path):
+    travel = []
+    currentNode = destination
+    while currentNode != origin:
+      travel.append(currentNode)
+      prevNode = currentNode
+      currentNode = path[prevNode]
 
-      if len(self.graph[nextAirports[costs.index(minCost)]]) == 1:
-        possibleAirport = self.graph[nextAirports[costs.index(minCost)]]
-        if possibleAirport[0] in visitedAirports:
-          costs.remove(minCost)
-          minCost = min(costs)
+    travel.append(origin)
+    return travel[::-1]
 
-      nextAirport = nextAirports[costs.index(minCost)]
-      visitedAirports.append(nextAirport)
-
-      toVisit = self.graph[nextAirport]
-
-
-    return (visitedAirports, totalCost)
 
   def printData(self):
     for key in self.graph: print(f'{key} --> {self.graph[key]}')
